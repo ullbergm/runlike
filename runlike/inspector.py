@@ -56,7 +56,7 @@ class Inspector(object):
                     if host_port == "":
                         self.options.append("-p " + container_port_and_protocol)
                     else:
-                        if host_ip != '':
+                        if host_ip != '' and host_ip != '0.0.0.0':
                             self.options.append(
                                 '-p %s:%s:%s' %
                                 (host_ip, host_port, container_port_and_protocol))
@@ -86,7 +86,8 @@ class Inspector(object):
                 "HostConfig.RestartPolicy.MaximumRetryCount")
             if max_retries > 0:
                 restart += ":%d" % max_retries
-        self.options.append("--restart=%s" % restart)
+        if restart:
+            self.options.append("--restart=%s" % restart)
 
     def parse_devices(self):
         devices = self.get_fact("HostConfig.Devices")
@@ -122,7 +123,7 @@ class Inspector(object):
         self.multi_option("HostConfig.CapDrop", "cap-drop")
         self.parse_ports()
         self.parse_links()
-        self.parse_restart()
+        #self.parse_restart()
         self.parse_devices()
 
         stdout_attached = self.get_fact("Config.AttachStdout")
