@@ -123,7 +123,7 @@ class Inspector(object):
         self.multi_option("HostConfig.CapDrop", "cap-drop")
         self.parse_ports()
         self.parse_links()
-        #self.parse_restart()
+        self.parse_restart()
         self.parse_devices()
 
         stdout_attached = self.get_fact("Config.AttachStdout")
