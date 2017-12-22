@@ -28,7 +28,7 @@ This prints out what you need to run to get a similar container. You can do `$(r
 
 ```
 docker run -v /var/run/docker.sock:/var/run/docker.sock \
-    assaflavie/runlike YOUR-CONTAINER
+    ullbergm/runlike YOUR-CONTAINER
 ```
 
 # Install
